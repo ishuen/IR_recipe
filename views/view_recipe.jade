@@ -1,0 +1,26 @@
+extends layout
+
+block content
+	h1= title
+	div
+		p 觀看人次: #{data.view_count}  收藏人數: #{data.fav_count} 
+		div
+			h2 #{data.title}
+			p #{data.description}
+		p 適用人數: #{data.num_of_people} 製作時間: #{data.time}
+		p 作者: #{data.author}
+	div
+		h3 食材: 
+		each tag, ind in data.ingredient
+			if ind!='others'
+				p=ind + ':'
+			each val, index in tag
+				p=index + ': '+val
+	div
+		h3 步驟: 
+		each val, index in data.step
+			p=index + ': '+val
+	div
+		p 小撇步: #{data.tips}
+	div
+		p 你可能還會喜歡:

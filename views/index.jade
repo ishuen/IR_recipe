@@ -1,5 +1,15 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+	h1= title
+	p 探索你的#{title}
+	div
+		form(name="searchField", action="/view_recipe", method="get")
+			input(type="text", name="searchBox")
+			br
+			input(type="button", value="classified")
+			input(type="submit", value="search!")
+			br
+			label(for="checkbox")
+			input(type="checkbox", name="class0", checked=(true===false ? "checked" : undefined))
+			| 杯子蛋糕
