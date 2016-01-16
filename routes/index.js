@@ -41,22 +41,41 @@ var r = new mongoose.Schema({
 var recipe = mongoose.model('recipe', r);
 
 module.exports = function(app){
+	var sess = new Object();
 	app.get('/', function(req, res){
-		res.render('index', { title: title});
+		if(sess.searchBox != undefined){
+			console.log(sess.searchBox);
+			var id = sess.searchBox;
+			var query = recipe.find({'title':id}).select({'title':1, 'recipe_id':1, 'num_of_people':1, 'time':1, 'description':1});
+			query.lean().exec(function (err, docs) {
+				if(err) return handleError(err);
+				console.log(docs);
+				// console.log('end searching');
+				res.render('index', {title: title, data:docs});
+			});
+		}
+		else res.render('index', { title: title});
 	});
 	app.get('/view_recipe', function(req, res){
-		console.log(req.query);
+		// console.log(req.query);
 		var data = Object();
 		// data = dbFunc.showRecipeById('32532');
 		// console.log(data);
-		var id = '32532';
+		var id = req.query.id;
 		var query = recipe.findOne({'recipe_id':id});
 		query.exec(function (err, docs) {
 			if(err) return handleError(err);
-			console.log(docs);
+			// console.log(docs);
 			// console.log('end searching');
 			res.render('view_recipe', {title: title, data:docs});
 		});
 	});
+	app.get('/search_result', function(req, res){
+		sess.searchBox = req.query.searchBox;
+		req.session = sess;
+		// console.log(sess.searchBox);
+		// console.log(req.session.searchBox);
+		res.redirect("/");
+	})
 }
 // module.exports = router;

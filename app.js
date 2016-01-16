@@ -7,6 +7,8 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
 
 var app = express();
 

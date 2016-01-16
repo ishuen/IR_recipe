@@ -1,15 +1,27 @@
 extends layout
 
 block content
-	h1= title
-	p 探索你的#{title}
-	div
-		form(name="searchField", action="/view_recipe", method="get")
-			input(type="text", name="searchBox")
-			br
-			input(type="button", value="classified")
-			input(type="submit", value="search!")
-			br
-			label(for="checkbox")
-			input(type="checkbox", name="class0", checked=(true===false ? "checked" : undefined))
-			| 杯子蛋糕
+	div.main
+		div.headLine
+			h1= title
+			p 探索你的#{title}
+		div.searchArea
+			form(name="searchField" action="/search_result" method="get")
+				input(type="text", class="searchBox", name="searchBox")
+				input(class="button", type="button", value="分類選項")
+				input(class="submit", type="submit", value="搜尋!")
+				br
+				label(for="checkbox")
+				input(type="checkbox", name="class0", checked=(true===false ? "checked" : undefined))
+				| 杯子蛋糕
+		br
+		if data != null
+			div.searchResult
+				//- each dish, index in data
+					h2 #{dish.title}
+					p 適用人數: #{dish.num_of_people} 製作時間: #{dish.time}
+					p #{dish.description}
+				each dish, index in data
+					a(href="/view_recipe?id="+dish.recipe_id) #{dish.title}
+					p 適用人數: #{dish.num_of_people} &nbsp;&nbsp;&nbsp;製作時間: #{dish.time}
+					p #{dish.description}

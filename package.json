@@ -13,7 +13,9 @@
     "jade": "~1.9.2",
     "morgan": "~1.5.1",
     "serve-favicon": "~2.2.0",
-    "mongoose": "*"
+    "mongoose": "*",
+    "express-session":"~1.9.1",
+    "connect-mongo":"~0.4.1"
   },
   "description": "IRTM term project",
   "main": "app.js",

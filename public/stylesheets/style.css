@@ -1,8 +1,125 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  	/*padding: 50px;*/
+  	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  	background-image:url('/images/sweet.jpg');
+	background-size: 100%;
+  	background-repeat: no-repeat;
 }
 
-a {
-  color: #00B7FF;
+/*a {
+ 	color: #00B7FF;
+}
+*/
+.main {
+	width:100%;
+	height: 600px;
+	margin: 0px;
+  	overflow: scroll;
+}
+.headLine {
+	margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    text-align: left;
+}
+
+.searchArea {
+	margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    width: 70%;
+    background-color: rgba(249, 99, 139, 0.4);
+    border-radius: 15px;
+    padding-top:30px;
+    padding-bottom: 30px;
+    padding-right:10px;
+    padding-left:10px;
+}
+
+.searchResult {
+	margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+    width: 70%;
+    background-color: rgba(249, 99, 139, 0.4);
+    border-radius: 15px;
+    padding: 10px;
+}
+
+.searchResult a{
+	font-size: 18px;
+	color: black;
+}
+
+.searchBox {
+	margin: 10px;
+	height: 25px;
+	width: 250px;
+}
+
+.button {
+	font-size: 14px;
+	margin: 3px;
+	width: 70px;
+	height: 25px;
+	border-radius: 5px;
+	background-color: #D8D8D8;
+	border-collapse: collapse;
+	border-width: 1px;
+	border-color: #BDBDBD;
+}
+
+.submit {
+	font-size: 14px;
+	margin: 3px;
+	width: 70px;
+	height: 25px;
+	border-radius: 5px;
+	background-color: #D8D8D8;
+	border-collapse: collapse;
+	border-width: 1px;
+	border-color: #BDBDBD;
+}
+
+.re {
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+
+}
+
+.fir {
+	background-color: rgba(247, 228, 233, 0.5);
+}
+
+.last {
+	background-color: rgba(247, 228, 233, 0.5);
+}
+
+table {
+	width: 100%;
+	table-layout: fixed;
+}
+
+td {
+	vertical-align: text-top;
+}
+
+td:nth-child(even){	
+	width: 45%;
+	float: right;
+}
+
+.tRight{
+	padding-left: 10px;
+	background-color: rgba(252, 243, 246, 0.6);
+}
+
+td:nth-child(odd){
+	width: 50%;
+	float: left;
+}
+.tLeft{
+	padding-left: 10px;
+	background-color: rgba(254, 212, 231, 0.6);
 }
