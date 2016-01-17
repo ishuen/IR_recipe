@@ -8,8 +8,10 @@ block content
 		div.searchArea
 			form(name="searchField" action="/search_result" method="get")
 				input(type="text", class="searchBox", name="searchBox")
+				//- input(class="button", type="button", id="show", value="分類檢索")
 				input(class="submit", type="submit", value="搜尋!")
 				br
+				//- div.hiddenRadio(style="visibility:hidden")
 				div
 					label(for="radio")
 					input(type="radio", name="class", checked="true")
@@ -25,4 +27,9 @@ block content
 					a(href="/view_recipe?id="+dish.recipe_id) #{dish.title}
 					p 適用人數: #{dish.num_of_people} &nbsp;&nbsp;&nbsp;製作時間: #{dish.time}
 					p #{dish.description}
-					//- (true===false ? "checked" : false)
+		//- script.
+			$(document).ready(function(){
+				$("#show").click(function(){
+					$(".hiddenRadio").toggle();
+				});
+			});

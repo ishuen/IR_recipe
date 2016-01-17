@@ -15,7 +15,10 @@
     "serve-favicon": "~2.2.0",
     "mongoose": "*",
     "express-session":"~1.9.1",
-    "connect-mongo":"~0.4.1"
+    "connect-mongo":"~0.4.1",
+    "cheerio":"*",
+    "request": "latest",
+    "jquery":"*"
   },
   "description": "IRTM term project",
   "main": "app.js",
