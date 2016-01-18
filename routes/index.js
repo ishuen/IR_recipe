@@ -38,7 +38,13 @@ var r = new mongoose.Schema({
 	recipe_id: {type:String}
 });
 
+var s = new mongoose.Schema({
+	recipe_id: {type:String},
+	sim:{type:Object}
+});
+
 var recipe = mongoose.model('recipe', r);
+var similarity = mongoose.model('similarity', s);
 
 module.exports = function(app){
 	var sess = new Object();
@@ -57,7 +63,7 @@ module.exports = function(app){
 			}
 			else{
 				var id = sess.searchBox;
-				var query = recipe.find({'title':{$regex : ".*"+id+".*"}}).select({'title':1, 'recipe_id':1, 'num_of_people':1, 'time':1, 'description':1});
+				var query = recipe.find({'title':{$regex : ".*"+id+".*"}}).select({'title':1, 'recipe_id':1, 'num_of_people':1, 'time':1, 'description':1}).sort([["view_count","descending"],["fav_count","descending"]]);
 				query.lean().exec(function (err, docs) {
 					if(err) return handleError(err);
 					console.log(docs);
@@ -79,7 +85,21 @@ module.exports = function(app){
 			if(err) return handleError(err);
 			// console.log(docs);
 			// console.log('end searching');
-			res.render('view_recipe', {title: title, data:docs});
+			var query2 = similarity.findOne({'recipe_id':id});
+			query2.exec(function (err, simi){
+				if(err) return handleError(err);
+				if(simi != null || simi != undefined){
+					console.log(simi.sim);
+					var query3 = recipe.find({$or:[{'recipe_id':simi.sim.first}, {'recipe_id':simi.sim.second}, {'recipe_id':simi.sim.third}, {'recipe_id':simi.sim.forth}, {'recipe_id':simi.sim.fifth}]});
+					query3.exec(function(err, sug){
+						res.render('view_recipe', {title: title, data:docs, sug: sug});
+					})
+				
+				}
+				else{
+					res.render('view_recipe', {title: title, data:docs});
+				}
+			});
 		});
 	});
 	app.get('/search_result', function(req, res){

@@ -19,8 +19,7 @@ block content
 								p=index + ': '+val
 							br
 						div.last
-							p 小撇步: #{data.tips}
-							p 你可能還會喜歡:
+							h3 小撇步: #{data.tips}
 					td
 						div.tRight
 							h3 食材: 
@@ -30,3 +29,9 @@ block content
 								each val, index in tag
 									p=index + ': '+val
 								br
+			div.last2
+				h3 你可能還會喜歡:
+				if sug != undefined
+					each val, ind in sug
+						a(href="/view_recipe?id="+val.recipe_id) #{val.title}
+						p=val.description

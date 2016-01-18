@@ -25,7 +25,7 @@ block content
 			div.searchResult
 				each dish, index in data
 					a(href="/view_recipe?id="+dish.recipe_id) #{dish.title}
-					p 適用人數: #{dish.num_of_people} &nbsp;&nbsp;&nbsp;製作時間: #{dish.time}
+					p 人數: #{dish.num_of_people} &nbsp;&nbsp;&nbsp;製作時間: #{dish.time}
 					p #{dish.description}
 		//- script.
 			$(document).ready(function(){
