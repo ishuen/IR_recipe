@@ -46,13 +46,14 @@ module.exports = function(app){
 		if(sess.searchBox != undefined){
 			console.log(sess.searchBox);
 			if(sess.searchBox == ''){
-				var query = recipe.find().select({'title':1, 'recipe_id':1, 'num_of_people':1, 'time':1, 'description':1});
-				query.lean().exec(function (err, docs) {
-					if(err) return handleError(err);
-					console.log(docs);
-					// console.log('end searching');
-					res.render('index', {title: title, data:docs});
-				});
+				// var query = recipe.find().select({'title':1, 'recipe_id':1, 'num_of_people':1, 'time':1, 'description':1});
+// 				query.lean().exec(function (err, docs) {
+// 					if(err) return handleError(err);
+// 					console.log(docs);
+// 					// console.log('end searching');
+// 					res.render('index', {title: title, data:docs});
+// 				});
+				res.render('index', {title: title});
 			}
 			else{
 				var id = sess.searchBox;
