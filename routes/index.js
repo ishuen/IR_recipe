@@ -62,7 +62,8 @@ module.exports = function(app){
 				res.render('index', {title: title});
 			}
 			else{
-				var id = sess.searchBox;
+				var str = sess.searchBox;
+				var id = str.replace(/ /g, ".*");
 				var query = recipe.find({'title':{$regex : ".*"+id+".*"}}).select({'title':1, 'recipe_id':1, 'num_of_people':1, 'time':1, 'description':1}).sort([["view_count","descending"],["fav_count","descending"]]);
 				query.lean().exec(function (err, docs) {
 					if(err) return handleError(err);
